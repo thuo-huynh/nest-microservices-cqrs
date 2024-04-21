@@ -1,0 +1,2 @@
+CREATE DATABASE funds;
+CREATE DATABASE accounts;
