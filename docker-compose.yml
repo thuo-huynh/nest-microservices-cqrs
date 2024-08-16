@@ -9,7 +9,7 @@ services:
     volumes:
       - mongodb_data:/data/db
     networks:
-      - bank_api_network
+      - bank-network
 
   postgres:
     container_name: postgres
@@ -24,7 +24,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./script/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - bank_api_network
+      - bank-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
@@ -42,7 +42,7 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     networks:
-      - bank_api_network
+      - bank-network
 
   kafka:
     container_name: kafka
@@ -58,10 +58,27 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
     depends_on:
       - zookeeper
     networks:
-      - bank_api_network
+      - bank-network
+
+  kafka-ui:
+      image: provectuslabs/kafka-ui:latest
+      container_name: kafka-ui
+      ports:
+        - '8080:8080'
+      environment:
+        - KAFKA_CLUSTERS_0_NAME=local
+        - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+        - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+        - KAFKA_CLUSTERS_0_READONLY=false
+      depends_on:
+        - kafka
+      networks:
+        - bank-network
+
 
 volumes:
   zookeeper_data:
@@ -74,6 +91,6 @@ volumes:
     driver: local
 
 networks:
-  bank_api_network:
-    name: bank_api_network
+  bank-network:
+    name: bank-network
     driver: bridge

@@ -17,24 +17,6 @@
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     },
-    "account": {
-      "type": "application",
-      "root": "apps/account",
-      "entryFile": "main",
-      "sourceRoot": "apps/account/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/account/tsconfig.app.json"
-      }
-    },
-    "fund": {
-      "type": "application",
-      "root": "apps/fund",
-      "entryFile": "main",
-      "sourceRoot": "apps/fund/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/fund/tsconfig.app.json"
-      }
-    },
     "api-gateway": {
       "type": "application",
       "root": "apps/api-gateway",
@@ -42,6 +24,24 @@
       "sourceRoot": "apps/api-gateway/src",
       "compilerOptions": {
         "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    },
+    "account-command": {
+      "type": "application",
+      "root": "apps/account-command",
+      "entryFile": "main",
+      "sourceRoot": "apps/account-command/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/account-command/tsconfig.app.json"
+      }
+    },
+    "account-query": {
+      "type": "application",
+      "root": "apps/account-query",
+      "entryFile": "main",
+      "sourceRoot": "apps/account-query/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/account-query/tsconfig.app.json"
       }
     }
   },
