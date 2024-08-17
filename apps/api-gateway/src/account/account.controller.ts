@@ -3,7 +3,10 @@ import { Body, Controller, HttpException, HttpStatus, Inject, OnModuleInit, Post
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
-@Controller('account')
+@Controller({
+  path: 'bank-account',
+  version: '1',
+})
 export class AccountController implements OnModuleInit {
   private svc: BankAccountCommandServiceClient;
 

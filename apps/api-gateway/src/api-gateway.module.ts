@@ -8,6 +8,7 @@ import { ApiGatewayService } from './api-gateway.service';
 @Module({
   imports: [
     AccountModule,
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: process.env.IS_DOCKER ? '.docker.env' : '.env' }),
   ],
   controllers: [ApiGatewayController],
   providers: [ApiGatewayService],

@@ -11,7 +11,7 @@ import { BANK_FUNDS_COMMAND_PACKAGE_NAME } from '@app/common/protos/bank-funds-c
         name: BANK_ACCOUNT_COMMAND_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50052',
+          url: '0.0.0.0:50042',
           package: BANK_ACCOUNT_COMMAND_PACKAGE_NAME,
           protoPath: 'protos/bank-account-command.proto',
         },
