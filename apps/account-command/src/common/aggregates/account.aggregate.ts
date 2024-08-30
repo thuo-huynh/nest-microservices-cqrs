@@ -1,6 +1,6 @@
-import { OpenAccountCommand } from '@app/common/commands';
-import { CloseAccountCommand } from '@app/common/commands/close-account.command';
-import { AccountClosedEvent, AccountOpenedEvent } from '@app/common/events';
+import { DepositFundsCommand, OpenAccountCommand } from '@app/common/commands';
+import { CloseAccountCommand } from '@app/common/commands/account/close-account.command';
+import { AccountClosedEvent, AccountOpenedEvent, FundsDepositedEvent } from '@app/common/events';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ExtendedAggregateRoot } from 'nestjs-event-sourcing';
 
@@ -49,5 +49,15 @@ export class AccountAggregate extends ExtendedAggregateRoot {
     console.log('AccountAggregate/onAccountClosedEvent');
     this.id = event.id;
     this.setActive(false);
+  }
+
+  public depositFunds(command: DepositFundsCommand): void | never {
+    const event: FundsDepositedEvent = new FundsDepositedEvent(command);
+    this.apply(event);
+  }
+
+  public onFundsDepositedEvent(event: FundsDepositedEvent): void {
+    this.id = event.id;
+    this.setBalance(this.getBalance() + event.amount);
   }
 }

@@ -94,7 +94,9 @@
     "moduleNameMapper": {
       "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^@app/account-command(|/.*)$": "<rootDir>/apps/account-command/src/$1",
-      "^@app/account-query(|/.*)$": "<rootDir>/apps/account-query/src/$1"
+      "^@app/account-query(|/.*)$": "<rootDir>/apps/account-query/src/$1",
+      "^@app/funds-command(|/.*)$": "<rootDir>/apps/funds-command/src/$1",
+      "^@app/funds-query(|/.*)$": "<rootDir>/apps/funds-query/src/$1"
     }
   }
 }

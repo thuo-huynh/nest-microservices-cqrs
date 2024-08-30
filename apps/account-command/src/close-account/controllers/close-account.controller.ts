@@ -3,7 +3,7 @@ import { Body, Controller, HttpStatus, Inject } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { GrpcMethod } from '@nestjs/microservices';
 import { CloseAccountDto } from './close-account.dto';
-import { CloseAccountCommand } from '@app/common/commands/close-account.command';
+import { CloseAccountCommand } from '@app/common/commands/account/close-account.command';
 
 @Controller()
 export class CloseAccountController {

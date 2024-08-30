@@ -1,7 +1,7 @@
 import { BaseEvent } from 'nestjs-event-sourcing';
 
-import { AccountType } from '../enums/account-type.enum';
-import { OpenAccountCommand } from '../commands/open-account.command';
+import { AccountType } from '../../enums/account-type.enum';
+import { OpenAccountCommand } from '../../commands/account/open-account.command';
 
 export class AccountOpenedEvent extends BaseEvent {
   public holder: string;

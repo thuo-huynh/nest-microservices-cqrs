@@ -1,6 +1,6 @@
 import { AccountAggregate } from '@app/account-command/common/aggregates/account.aggregate';
 import { Account } from '@app/account-query/common/entity/account.entity';
-import { CloseAccountCommand } from '@app/common/commands/close-account.command';
+import { CloseAccountCommand } from '@app/common/commands/account/close-account.command';
 import { Inject } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { EventSourcingHandler } from 'nestjs-event-sourcing';

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { FundsCommandModule } from './funds-command.module';
+import { FundsCommandModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(FundsCommandModule);

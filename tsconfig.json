@@ -26,6 +26,12 @@
       ],
       "@app/account-query/*": [
         "apps/account-query/src/*"
+      ],
+      "@app/funds-command/*": [
+        "apps/funds-command/src/*"
+      ],
+      "@app/funds-query/*": [
+        "apps/funds-query/src/*"
       ]
     }
   }
