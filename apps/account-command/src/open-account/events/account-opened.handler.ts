@@ -9,7 +9,9 @@ export class OpenAccountEventHandler implements IEventHandler<AccountOpenedEvent
     private readonly eventProducer: AccountEventProducer;
 
     public handle(event: AccountOpenedEvent): void {
+        // console.log("🚀 ~ OpenAccountEventHandler ~ handle ~ event:", event)
         const { constructor }: AccountOpenedEvent = Object.getPrototypeOf(event);
+        // console.log("🚀 ~ OpenAccountEventHandler ~ handle ~ constructor.name:", constructor.name)
         this.eventProducer.produce(constructor.name, event);
     }
 }

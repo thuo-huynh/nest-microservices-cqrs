@@ -1,8 +1,14 @@
-import { BANK_ACCOUNT_COMMAND_PACKAGE_NAME, BANK_ACCOUNT_COMMAND_SERVICE_NAME } from '@app/common/protos/bank-account-command.pb';
+import {
+  BANK_ACCOUNT_COMMAND_PACKAGE_NAME,
+  BANK_ACCOUNT_COMMAND_SERVICE_NAME,
+} from '@app/common/protos/bank-account-command.pb';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AccountController } from './account.controller';
-import { BANK_FUNDS_COMMAND_PACKAGE_NAME } from '@app/common/protos/bank-funds-command.pb';
+import {
+  BANK_ACCOUNT_QUERY_PACKAGE_NAME,
+  BANK_ACCOUNT_QUERY_SERVICE_NAME,
+} from '@app/common/protos/bank-account-query.pb';
 
 @Module({
   imports: [
@@ -11,13 +17,22 @@ import { BANK_FUNDS_COMMAND_PACKAGE_NAME } from '@app/common/protos/bank-funds-c
         name: BANK_ACCOUNT_COMMAND_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50042',
+          url: '0.0.0.0:50052',
           package: BANK_ACCOUNT_COMMAND_PACKAGE_NAME,
           protoPath: 'protos/bank-account-command.proto',
+        },
+      },
+      {
+        name: BANK_ACCOUNT_QUERY_SERVICE_NAME,
+        transport: Transport.GRPC,
+        options: {
+          url: '0.0.0.0:50051',
+          package: BANK_ACCOUNT_QUERY_PACKAGE_NAME,
+          protoPath: 'protos/bank-account-query.proto',
         },
       },
     ]),
   ],
   controllers: [AccountController],
 })
-export class AccountModule { }
+export class AccountModule {}

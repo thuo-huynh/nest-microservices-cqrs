@@ -43,6 +43,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/account-query/tsconfig.app.json"
       }
+    },
+    "funds-command": {
+      "type": "application",
+      "root": "apps/funds-command",
+      "entryFile": "main",
+      "sourceRoot": "apps/funds-command/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/funds-command/tsconfig.app.json"
+      }
+    },
+    "funds-query": {
+      "type": "application",
+      "root": "apps/funds-query",
+      "entryFile": "main",
+      "sourceRoot": "apps/funds-query/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/funds-query/tsconfig.app.json"
+      }
     }
   },
   "monorepo": true,

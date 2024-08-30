@@ -11,6 +11,7 @@ export class AccountEventProducer implements OnModuleInit, OnModuleDestroy {
   private readonly config: ConfigService;
 
   public async onModuleInit(): Promise<void> {
+
     const kafka: Kafka = new Kafka({
       clientId: 'BankAccount',
       brokers: [this.config.get('KAFKA_URL')],
@@ -26,6 +27,8 @@ export class AccountEventProducer implements OnModuleInit, OnModuleDestroy {
   }
 
   public produce<T extends BaseEvent>(topic: string, event: T): void {
+    console.log('AccountEventProducer', topic);
+    console.log("🚀 ~ AccountEventProducer ~ event:", event)
     this.producer.send({ topic: topic, messages: [{ value: JSON.stringify(event) }] });
   }
 }

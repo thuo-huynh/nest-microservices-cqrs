@@ -23,6 +23,9 @@
       ],
       "@app/account-command/*": [
         "apps/account-command/src/*"
+      ],
+      "@app/account-query/*": [
+        "apps/account-query/src/*"
       ]
     }
   }

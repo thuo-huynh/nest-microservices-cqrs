@@ -14,21 +14,21 @@ import { OpenAccountEventHandler } from "./events/account-opened.handler";
 @Module({
   imports: [
     CqrsModule,
-    ClientsModule.registerAsync([
-      {
-        name: BANK_FUNDS_QUERY_SERVICE_NAME,
-        imports: [ConfigModule],
-        useFactory: (config: ConfigService) => ({
-          transport: Transport.GRPC,
-          options: {
-            url: config.get('BANK_FUNDS_COMMAND_GRPC_URL'),
-            package: BANK_FUNDS_COMMAND_PACKAGE_NAME,
-            protoPath: 'protos/bank-account-command.proto',
-          },
-        }),
-        inject: [ConfigService],
-      },
-    ]),
+    // ClientsModule.registerAsync([
+    //   {
+    //     name: BANK_FUNDS_QUERY_SERVICE_NAME,
+    //     imports: [ConfigModule],
+    //     useFactory: (config: ConfigService) => ({
+    //       transport: Transport.GRPC,
+    //       options: {
+    //         url: config.get('BANK_FUNDS_COMMAND_GRPC_URL'),
+    //         package: BANK_FUNDS_COMMAND_PACKAGE_NAME,
+    //         protoPath: 'protos/bank-account-command.proto',
+    //       },
+    //     }),
+    //     inject: [ConfigService],
+    //   },
+    // ]),
   ],
   controllers: [OpenAccountController],
   providers: [OpenAccountCommandHandler, OpenAccountEventHandler, AccountEventProducer, EventSourcingHandler],
