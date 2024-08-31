@@ -20,7 +20,6 @@ async function bootstrap() {
     logger.log(`[KFK] ${config.get('KAFKA_URL')}`);
     logger.log(`[URL] ${config.get('COMMAND_GRPC_URL')}`);
   });
-
 }
 
 async function configure(app: INestApplication, config: ConfigService): Promise<void> {
