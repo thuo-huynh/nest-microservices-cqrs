@@ -48,13 +48,13 @@ export class AccountController implements OnModuleInit {
   constructor() {}
 
   @Get('find-one/:id')
-  findAccount(@Param('id') id: string) {
+  async findAccount(@Param('id') id: string) {
     const payload: FindAccountRequest = { id };
     return this.svcQuery.findAccount(payload);
   }
 
   @Get('find/:page')
-  findAllAccounts(@Param('page') page: number) {
+  async findAllAccounts(@Param('page') page: number) {
     const payload: FindAllAccountsRequest = { page };
     return this.svcQuery.findAllAccounts(payload);
   }
@@ -69,7 +69,7 @@ export class AccountController implements OnModuleInit {
   }
 
   @Delete('close/:id')
-  closeAccount(@Param('id') id: string) {
+  async closeAccount(@Param('id') id: string) {
     const payload: CloseAccountRequest = { id };
     return this.svcCommand.closeAccount(payload);
   }
