@@ -9,7 +9,7 @@ import { DepositFundsModule } from './deposit-funds/deposit-funds.module';
     EventSourcingModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
-        mongoUrl: config.get('COMMAND_DB_URL'),
+        mongoUrl: config.get('FUNDS_COMMAND_DB_URL'),
       }),
       inject: [ConfigService],
     }),

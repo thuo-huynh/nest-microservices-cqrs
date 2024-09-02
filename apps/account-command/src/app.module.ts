@@ -10,7 +10,7 @@ import { CloseAccountModule } from './close-account/close-account.module';
     EventSourcingModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
-        mongoUrl: config.get('COMMAND_DB_URL'),
+        mongoUrl: config.get('ACCOUNT_COMMAND_DB_URL'),
       }),
       inject: [ConfigService],
     }),

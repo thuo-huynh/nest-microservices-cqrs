@@ -11,6 +11,7 @@ export class FundsDepositedHandler implements IEventHandler<FundsDepositedEvent>
   private readonly repository: FundsRepository;
 
   public async handle(event: FundsDepositedEvent): Promise<void> {
+    console.log('🚀 ~ FundsDepositedHandler ~ handle ~ event:', event);
     if (event.version === 0) {
       const funds: Funds = new Funds();
       funds.id = event.id;

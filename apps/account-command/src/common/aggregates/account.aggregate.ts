@@ -52,6 +52,7 @@ export class AccountAggregate extends ExtendedAggregateRoot {
   }
 
   public depositFunds(command: DepositFundsCommand): void | never {
+    console.log('🚀 ~ AccountAggregate ~ depositFunds ~ command:', command);
     const event: FundsDepositedEvent = new FundsDepositedEvent(command);
     this.apply(event);
   }

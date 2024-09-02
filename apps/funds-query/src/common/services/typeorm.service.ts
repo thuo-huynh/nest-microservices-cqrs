@@ -1,7 +1,8 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Account } from '../entity/account.entity';
+import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+
+import { Funds } from '../entity/funds.entity';
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
@@ -11,8 +12,8 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   public createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'postgres',
-      url: this.config.get('ACCOUNT_QUERY_DB_URL'),
-      entities: [Account],
+      url: this.config.get('FUNDS_QUERY_DB_URL'),
+      entities: [Funds],
       migrations: ['dist/migrations/*.js'],
       migrationsTableName: 'typeorm_migrations',
       migrationsRun: true,

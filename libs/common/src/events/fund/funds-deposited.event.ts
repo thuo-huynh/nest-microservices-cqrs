@@ -5,6 +5,7 @@ export class FundsDepositedEvent extends BaseEvent {
   public amount: number;
 
   constructor(command?: DepositFundsCommand) {
+    console.log('🚀 ~ FundsDepositedEvent ~ constructor ~ command:', command);
     super();
 
     if (!command) {

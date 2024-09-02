@@ -18,7 +18,7 @@ async function bootstrap() {
     logger.log(`[ENV] ${process.env.NODE_ENV}`);
     logger.log(`[DKR] ${process.env.IS_DOCKER ? true : false}`);
     logger.log(`[KFK] ${config.get('KAFKA_URL')}`);
-    logger.log(`[URL] ${config.get('QUERY_GRPC_URL')}`);
+    logger.log(`[URL] ${config.get('ACCOUNT_QUERY_GRPC_URL')}`);
   });
 }
 async function configure(app: INestApplication, config: ConfigService): Promise<void> {
@@ -30,7 +30,7 @@ async function configure(app: INestApplication, config: ConfigService): Promise<
     {
       transport: Transport.GRPC,
       options: {
-        url: config.get('QUERY_GRPC_URL'),
+        url: config.get('ACCOUNT_QUERY_GRPC_URL'),
         package: BANK_ACCOUNT_QUERY_PACKAGE_NAME,
         protoPath: 'protos/bank-account-query.proto',
       },

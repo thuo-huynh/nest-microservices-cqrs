@@ -23,7 +23,7 @@ import { OpenAccountSaga } from './sagas/open-account.saga';
           options: {
             url: config.get('BANK_FUNDS_COMMAND_GRPC_URL'),
             package: BANK_FUNDS_COMMAND_PACKAGE_NAME,
-            protoPath: 'protos/bank-account-command.proto',
+            protoPath: 'protos/bank-funds-command.proto',
           },
         }),
         inject: [ConfigService],

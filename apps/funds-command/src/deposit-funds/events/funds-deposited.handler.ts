@@ -9,9 +9,10 @@ export class FundsDepositedHandler implements IEventHandler<FundsDepositedEvent>
   private readonly eventProducer: AccountEventProducer;
 
   public handle(event: FundsDepositedEvent): void {
-    console.log('FundsDepositedHandler', { event });
+    console.log('FundsDepositedHandler -------------------------', { event });
     const { constructor }: FundsDepositedEvent = Object.getPrototypeOf(event);
 
+    console.log('🚀 ~ FundsDepositedHandler ~ handle ~ constructor.name:', constructor.name);
     this.eventProducer.produce(constructor.name, event);
   }
 }
