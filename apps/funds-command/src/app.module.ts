@@ -1,7 +1,10 @@
+import { ReceiveFundsCommand } from '@app/common/commands';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventSourcingModule } from 'nestjs-event-sourcing';
 import { DepositFundsModule } from './deposit-funds/deposit-funds.module';
+import { WithdrawFundsModule } from './withdraw-funds/withdraw-funds.module';
+import { ReceiveFundsModule } from './receive-funds/receive-funds.module';
 
 @Module({
   imports: [
@@ -14,6 +17,8 @@ import { DepositFundsModule } from './deposit-funds/deposit-funds.module';
       inject: [ConfigService],
     }),
     DepositFundsModule,
+    WithdrawFundsModule,
+    ReceiveFundsModule,
   ],
   controllers: [],
   providers: [],

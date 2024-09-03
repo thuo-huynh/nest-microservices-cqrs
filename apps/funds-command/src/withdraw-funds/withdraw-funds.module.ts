@@ -1,16 +1,17 @@
+import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { EventSourcingHandler } from 'nestjs-event-sourcing';
+
 import { AccountEventProducer } from '@app/common/producer/account-event.producer';
 import {
   BANK_ACCOUNT_QUERY_PACKAGE_NAME,
   BANK_ACCOUNT_QUERY_SERVICE_NAME,
 } from '@app/common/protos/bank-account-query.pb';
-import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { CqrsModule } from '@nestjs/cqrs';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { EventSourcingHandler } from 'nestjs-event-sourcing';
-import { DepositFundsHandler } from './commands/deposit-funds.handler';
-import { DepositFundsController } from './controllers/deposit-funds.controller';
-import { FundsDepositedHandler } from './events/funds-deposited.handler';
+import { WithdrawFundsHandler } from './commands/withdraw-funds.handler';
+import { WithdrawFundsController } from './controllers/withdraw-funds.controller';
+import { FundsWithdrawnHandler } from './events/funds-withdrawn.handler';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { FundsDepositedHandler } from './events/funds-deposited.handler';
       },
     ]),
   ],
-  controllers: [DepositFundsController],
-  providers: [DepositFundsHandler, FundsDepositedHandler, AccountEventProducer, EventSourcingHandler],
+  controllers: [WithdrawFundsController],
+  providers: [WithdrawFundsHandler, FundsWithdrawnHandler, AccountEventProducer, EventSourcingHandler],
 })
-export class DepositFundsModule {}
+export class WithdrawFundsModule {}

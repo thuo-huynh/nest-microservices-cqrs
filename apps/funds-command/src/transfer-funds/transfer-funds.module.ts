@@ -8,9 +8,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EventSourcingHandler } from 'nestjs-event-sourcing';
-import { DepositFundsHandler } from './commands/deposit-funds.handler';
-import { DepositFundsController } from './controllers/deposit-funds.controller';
-import { FundsDepositedHandler } from './events/funds-deposited.handler';
+import { TransferFundsHandler } from './commands/transfer-funds.handler';
+import { TransferFundsController } from './controllers/transfer-funds.controller';
+import { FundsTransferredHandler } from './events/funds-transferred.handler';
+import { TransferFundsSaga } from './sagas/transfer-funds.saga';
 
 @Module({
   imports: [
@@ -31,7 +32,13 @@ import { FundsDepositedHandler } from './events/funds-deposited.handler';
       },
     ]),
   ],
-  controllers: [DepositFundsController],
-  providers: [DepositFundsHandler, FundsDepositedHandler, AccountEventProducer, EventSourcingHandler],
+  controllers: [TransferFundsController],
+  providers: [
+    TransferFundsHandler,
+    FundsTransferredHandler,
+    AccountEventProducer,
+    EventSourcingHandler,
+    TransferFundsSaga,
+  ],
 })
-export class DepositFundsModule {}
+export class TransferFundsModule {}

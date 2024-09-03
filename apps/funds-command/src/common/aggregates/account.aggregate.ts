@@ -1,6 +1,8 @@
-import { DepositFundsCommand } from '@app/common/commands';
+import { DepositFundsCommand, ReceiveFundsCommand } from '@app/common/commands';
+import { TransferFundsCommand } from '@app/common/commands/fund/transfer-funds.command';
 import { WithdrawFundsCommand } from '@app/common/commands/fund/withdraw-funds.command';
-import { FundsDepositedEvent } from '@app/common/events';
+import { FundsDepositedEvent, FundsTransferredEvent } from '@app/common/events';
+import { FundsReceivedEvent } from '@app/common/events/fund/funds-received.event';
 import { FundsWithdrawnEvent } from '@app/common/events/fund/funds-withdrawn.event';
 import { ExtendedAggregateRoot } from 'nestjs-event-sourcing';
 
@@ -38,6 +40,26 @@ export class AccountAggregate extends ExtendedAggregateRoot {
   }
 
   public onFundsWithdrawnEvent(event: FundsWithdrawnEvent): void {
+    this.id = event.id;
+    this.setBalance(this.getBalance() - event.amount);
+  }
+
+  public receiveFunds(command: ReceiveFundsCommand): void | never {
+    const event: FundsReceivedEvent = new FundsReceivedEvent(command);
+    this.apply(event);
+  }
+
+  public onFundsReceivedEvent(event: FundsReceivedEvent): void {
+    this.id = event.id;
+    this.setBalance(this.getBalance() + event.amount);
+  }
+
+  public transferFunds(command: TransferFundsCommand): void | never {
+    const event: FundsTransferredEvent = new FundsTransferredEvent(command);
+    this.apply(event);
+  }
+
+  public onFundsTransferredEvent(event: FundsTransferredEvent): void {
     this.id = event.id;
     this.setBalance(this.getBalance() - event.amount);
   }
