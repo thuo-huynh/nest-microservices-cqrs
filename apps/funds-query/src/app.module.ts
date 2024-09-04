@@ -4,6 +4,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './common/services/typeorm.service';
 import { ConsumerModule } from './consumer/consumer.module';
+import { LookupModule } from './lookup/lookup.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { ConsumerModule } from './consumer/consumer.module';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     CqrsModule,
     ConsumerModule,
+    LookupModule,
   ],
   controllers: [],
   providers: [],
